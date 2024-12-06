@@ -94,16 +94,15 @@ WSGI_APPLICATION = 'SpotifyProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'spotify',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432',
-
+        'NAME': os.getenv('DATABASE_NAME', 'default_db'),
+        'USER': os.getenv('DATABASE_USER', 'default_user'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'default_password'),
+        'HOST': os.getenv('DATABASE_HOST', 'localhost'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
 
